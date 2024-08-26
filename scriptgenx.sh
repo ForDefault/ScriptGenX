@@ -27,10 +27,10 @@ capture_script
 
 # Detect the script type based on the first line
 first_line=$(echo "$script_content" | head -n 1)
-if [[ $first_line == *"python"* ]]; then
-    extension=".py"
-else
+if [[ $first_line == "#!/bin/bash"* ]]; then
     extension=".sh"
+else
+    extension=".py"
 fi
 
 # Prompt for the file name
@@ -60,11 +60,10 @@ if [[ "\$execute_now" == "y" ]]; then
 fi
 
 # Copy the script to the clipboard
-cat generate_$filename.sh | xclip -selection clipboard
+cat "$filename$extension" | xclip -selection clipboard
 
 # If "no" is selected, delete the generated script
 if [[ "\$execute_now" != "y" ]]; then
-    cat generate_$filename.sh | xclip -selection clipboard
     rm "$filename$extension"
 fi
 
@@ -75,9 +74,11 @@ SCRIPTGENERATOR
 # Make the generated script executable
 chmod +x generate_$filename.sh
 
-# Run the generated script which will generate the final script
+# Run the generated script which will generate the final script and delete itself
 ./generate_$filename.sh
-rm -r generate_$filename.sh
 
-# Display a message confirming that the script was generated, made executable, and copied to the clipboard.
+# Clean up by deleting the generate_##.sh script
+rm -- "generate_$filename.sh"
+
+# Message to confirm completion
 echo "The script $filename$extension has been generated, made executable, and copied to the clipboard."
