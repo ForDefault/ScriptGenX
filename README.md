@@ -9,13 +9,13 @@ Either way its the same script just how you execute it.`
 
 ### **CLI Alias Install Option :**
 ```
+sudo apt-get update && sudo apt-get install -y xclip && \
 REPO_URL="https://github.com/ForDefault/ScriptGenX.git" && \
 REPO_NAME=$(basename $REPO_URL .git) && \
 username=$(whoami) && \
 git clone $REPO_URL && \
 cd $REPO_NAME && \
 full_path=$(pwd) && \
-sudo apt-get update && sudo apt-get install -y xclip && \
 chmod +x scriptgenx.sh && \
 if ! grep -q 'alias genx=' ~/.bashrc; then \
   echo 'alias genx="'"$full_path"'/scriptgenx.sh"' >> ~/.bashrc; \
