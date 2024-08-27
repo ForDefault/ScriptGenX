@@ -1,6 +1,24 @@
 # ScriptGenX
 Script Generator and Executor
 >Works great for testing scripts quickly with ChatGPT 
+>The install option: CLI alias so I can paste a script from my clipboard anywhere and from the CLI to launch it. Either way its the same script just how you execute it. 
+
+**`CLI Alias Install Option :`**
+```
+REPO_URL="https://github.com/ForDefault/ScriptGenX.git" && \
+REPO_NAME=$(basename $REPO_URL .git) && \
+username=$(whoami) && \
+git clone $REPO_URL && \
+cd $REPO_NAME && \
+sudo apt-get update && sudo apt-get install -y xclip && \
+chmod +x scriptgenx.sh && \
+if ! grep -q 'alias genx=' ~/.bashrc; then \
+  echo 'alias genx="/home/'"$username"'/'"$REPO_NAME"'/scriptgenx.sh"' >> ~/.bashrc; \
+fi && \
+source ~/.bashrc && \
+echo "Installation complete. You can now use 'genx' to run the script from anywhere."
+
+```
 
 **Script Generator and Executor** does all of that for you. It auto-detects whether you're working with a Shell or Python script, generates the file, sets the right permissions, and even gives you the option to run it immediately—all while copying the script to your clipboard and cleaning up afterwards. It's the simple, efficient way to manage your scripts without the extra hassle.
 
