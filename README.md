@@ -1,9 +1,13 @@
 # ScriptGenX
 Script Generator and Executor
 >Works great for testing scripts quickly with ChatGPT 
->The install option: CLI alias so I can paste a script from my clipboard anywhere and from the CLI to launch it. Either way its the same script just how you execute it. 
 
-# **`CLI Alias Install Option :`**
+- The install option: 
+
+`CLI alias means I can type genx in the CLI. The ScriptGenX.sh will launch. This allows me to use a current script in my clipboard to launch anywhere in a directory I want. 
+Either way its the same script just how you execute it.`
+
+### **CLI Alias Install Option :**
 ```
 REPO_URL="https://github.com/ForDefault/ScriptGenX.git" && \
 REPO_NAME=$(basename $REPO_URL .git) && \
